@@ -30,11 +30,27 @@ const burgerClass = css`
 `;
 
 const burger = props => {
+  const transformed = Object.keys(props.ingredients).map(i => {
+    return [...Array(props.ingredients[i])].map((_, index) => {
+      return <BurgerIngredient key={i + index} type={i} />;
+    });
+  });
+
+  // version without nested arrays
+  // const t = Object.keys(props.ingredients).reduce((accumulator, current) => {
+  //   const ingredientType = [...Array(props.ingredients[current])].map((_, index) => {
+  //     return <BurgerIngredient key={current + index} type={current} />;
+  //   });
+  //
+  //   return [...accumulator, ...ingredientType];
+  // }, []);
+  //
+  // console.log(t);
+
   return (
     <div className={burgerClass}>
       <BurgerIngredient type="bread-top" />
-      <BurgerIngredient type="cheese" />
-      <BurgerIngredient type="meat" />
+      {transformed}
       <BurgerIngredient type="bread-bottom" />
     </div>
   );
