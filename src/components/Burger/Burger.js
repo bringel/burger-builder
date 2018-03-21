@@ -30,7 +30,7 @@ const burgerClass = css`
 `;
 
 const burger = props => {
-  const transformed = Object.keys(props.ingredients)
+  let transformed = Object.keys(props.ingredients)
     .map(i => {
       return [...Array(props.ingredients[i])].map((_, index) => {
         return <BurgerIngredient key={i + index} type={i} />;
@@ -39,6 +39,10 @@ const burger = props => {
     .reduce((previous, current) => {
       return previous.concat(current);
     }, []);
+
+  if (transformed.length === 0) {
+    transformed = <p>Start adding ingredients!</p>;
+  }
 
   return (
     <div className={burgerClass}>

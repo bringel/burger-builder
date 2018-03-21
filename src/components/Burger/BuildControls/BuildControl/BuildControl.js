@@ -53,7 +53,7 @@ const buildControl = props => {
 
     &:hover,
     &:active {
-      background-color: 99703f;
+      background-color: #99703f;
       color: white;
     }
   `;
@@ -61,8 +61,10 @@ const buildControl = props => {
   return (
     <Wrapper>
       <Label>{props.label}</Label>
-      <LessButton>Less</LessButton>
-      <MoreButton>More</MoreButton>
+      <LessButton onClick={props.remove} disabled={props.removeDisabled}>
+        Less
+      </LessButton>
+      <MoreButton onClick={props.add}>More</MoreButton>
     </Wrapper>
   );
 };

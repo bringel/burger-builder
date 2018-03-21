@@ -3,6 +3,13 @@ import { css } from 'react-emotion';
 
 import BuildControl from './BuildControl/BuildControl';
 
+const controls = [
+  { label: 'Salad', type: 'salad' },
+  { label: 'Bacon', type: 'bacon' },
+  { label: 'Cheese', type: 'cheese' },
+  { label: 'Meat', type: 'meat' }
+];
+
 const buildControls = props => {
   const buildControls = css`
     width: 100%;
@@ -14,7 +21,22 @@ const buildControls = props => {
     margin: auto;
     padding: 10px 0;
   `;
-  return <div className={buildControls} />;
+  return (
+    <div className={buildControls}>
+      <p>
+        Price: <strong>${props.price.toFixed(2)}</strong>
+      </p>
+      {controls.map(c => (
+        <BuildControl
+          key={c.label}
+          label={c.label}
+          add={() => props.add(c.type)}
+          remove={() => props.remove(c.type)}
+          removeDisabled={props.ingredients[c.type] === 0}
+        />
+      ))}
+    </div>
+  );
 };
 
 export default buildControls;
