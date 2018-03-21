@@ -78,7 +78,9 @@ const buildControls = props => {
         />
       ))}
 
-      <OrderButton disabled={!props.purchasable}>Order Now</OrderButton>
+      <OrderButton disabled={!props.purchasable} onClick={props.orderHandler}>
+        Order Now
+      </OrderButton>
     </div>
   );
 };
