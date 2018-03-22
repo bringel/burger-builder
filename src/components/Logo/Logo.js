@@ -4,7 +4,7 @@ import { css } from 'react-emotion';
 import Logo from '../../assets/images/burger-logo.png';
 
 const logoWrapper = css`
-  height: 80%;
+  height: 100%;
   border-radius: 5px;
   background-color: white;
   padding: 8px;

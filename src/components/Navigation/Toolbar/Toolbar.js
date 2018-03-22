@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from 'react-emotion';
 
 import Logo from '../../Logo/Logo';
+import NavigationItems from '../NavigationItems/NavigationItems';
 
 const toolbarWrapper = css`
   height: 56px;
@@ -22,11 +23,21 @@ const toolbarWrapper = css`
   }
 `;
 
+const desktopOnly = css`
+  @media (max-width: 499px) {
+    display: none;
+  }
+`;
+
 const toolbar = props => (
   <header className={toolbarWrapper}>
     <div>MENU</div>
-    <Logo />
-    <nav>...</nav>
+    <div style={{ height: '80%' }} className={desktopOnly}>
+      <Logo />
+    </div>
+    <nav className={desktopOnly}>
+      <NavigationItems />
+    </nav>
   </header>
 );
 
