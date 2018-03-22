@@ -3,6 +3,7 @@ import { css } from 'react-emotion';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems';
+import DrawerToggle from './DrawerToggle/DrawerToggle';
 
 const toolbarWrapper = css`
   height: 56px;
@@ -31,7 +32,7 @@ const desktopOnly = css`
 
 const toolbar = props => (
   <header className={toolbarWrapper}>
-    <div>MENU</div>
+    <DrawerToggle clicked={props.toggleButtonClicked} />
     <div style={{ height: '80%' }} className={desktopOnly}>
       <Logo />
     </div>

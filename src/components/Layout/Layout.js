@@ -1,22 +1,37 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { css } from 'react-emotion';
 
 import Toolbar from '../Navigation/Toolbar/Toolbar';
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer';
 
-const layout = props => {
-  const content = css`
-    margin-top: 72px;
-  `;
+class Layout extends Component {
+  state = {
+    showSideDrawer: false
+  };
 
-  return (
-    <React.Fragment>
-      <Toolbar />
-      <SideDrawer />
-      <div>Toolbar, menu, backdrop</div>
-      <main className={content}>{props.children}</main>
-    </React.Fragment>
-  );
-};
+  sideDrawerClosedHandler = () => {
+    this.setState({ showSideDrawer: false });
+  };
 
-export default layout;
+  sideDrawerOpenHandler = () => {
+    this.setState(prevState => {
+      return { showSideDrawer: !prevState.showSideDrawer };
+    });
+  };
+
+  render() {
+    const content = css`
+      margin-top: 72px;
+    `;
+
+    return (
+      <React.Fragment>
+        <Toolbar toggleButtonClicked={this.sideDrawerOpenHandler} />
+        <SideDrawer show={this.state.showSideDrawer} close={this.sideDrawerClosedHandler} />
+        <main className={content}>{this.props.children}</main>
+      </React.Fragment>
+    );
+  }
+}
+
+export default Layout;

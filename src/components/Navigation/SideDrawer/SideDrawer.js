@@ -3,6 +3,7 @@ import { css } from 'react-emotion';
 
 import Logo from '../../Logo/Logo';
 import NavigationItems from '../NavigationItems/NavigationItems.js';
+import Backdrop from '../../UI/Backdrop/Backdrop';
 
 const drawer = css`
   position: fixed;
@@ -31,15 +32,23 @@ const close = css`
 `;
 
 const sideDrawer = props => {
+  let attachedClasses = [drawer, close];
+  if (props.show) {
+    attachedClasses = [drawer, open];
+  }
+
   return (
-    <div className={drawer}>
-      <div style={{ height: '11%', marginBottom: '32px' }}>
-        <Logo />
+    <React.Fragment>
+      <Backdrop show={props.show} clicked={props.close} />
+      <div className={attachedClasses.join(' ')}>
+        <div style={{ height: '11%', marginBottom: '32px' }}>
+          <Logo />
+        </div>
+        <nav>
+          <NavigationItems />
+        </nav>
       </div>
-      <nav>
-        <NavigationItems />
-      </nav>
-    </div>
+    </React.Fragment>
   );
 };
 
